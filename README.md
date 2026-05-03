@@ -2,8 +2,7 @@
 
 - An end-to-end data engineering project that streams transaction data using Kafka, processes it in real time, stores it in a Parquet-based data lake, and visualizes insights through an interactive dashboard.
 - Designed to simulate real-world streaming pipelines used in modern data platforms.
-- Simulates a real-world streaming data pipeline used in modern data platforms.
-
+  
 ---
 
 ## 🧱 Architecture
