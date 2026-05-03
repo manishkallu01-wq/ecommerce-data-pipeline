@@ -10,6 +10,12 @@
 CSV Dataset → Kafka → Consumer → Parquet Data Lake → SQL (DuckDB) → Streamlit Dashboard
 
 ---
+## 📥 Dataset
+
+Dataset used: Online Retail Dataset  
+Download from: https://archive.ics.uci.edu/ml/datasets/online+retail
+
+----
 
 ## ⚙️ Tech Stack
 
