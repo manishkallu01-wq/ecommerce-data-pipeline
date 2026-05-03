@@ -2,6 +2,7 @@
 
 - An end-to-end data engineering project that streams transaction data using Kafka, processes it in real time, stores it in a Parquet-based data lake, and visualizes insights through an interactive dashboard.
 - Designed to simulate real-world streaming pipelines used in modern data platforms.
+- Simulates a real-world streaming data pipeline used in modern data platforms.
 
 ---
 
@@ -42,12 +43,13 @@ Download from: https://archive.ics.uci.edu/ml/datasets/online+retail
 ```
 ecommerce-data-pipeline/
 │
-├── data/           # Raw dataset
-├── data_lake/      # Parquet files
-├── producer.py     # Kafka producer
-├── consumer.py     # Stream processing logic
-├── dashboard.py    # Streamlit dashboard
-├── query.py        # SQL queries (DuckDB)
+├── data/             # Raw dataset
+├── data_lake/        # Parquet files
+├── producer.py       # Kafka producer
+├── consumer.py       # Stream processing logic
+├── dashboard.py      # Streamlit dashboard
+├── query.py          # SQL queries (DuckDB)
+├── requirements.txt  # Project dependencies
 ├── README.md
 ```
 ---
@@ -55,8 +57,6 @@ ecommerce-data-pipeline/
 ## ▶️ How to Run
 
 ### 1. Start Kafka
-
-cd kafka-project
 
 docker-compose up -d
 
