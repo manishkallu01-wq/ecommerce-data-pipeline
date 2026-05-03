@@ -33,16 +33,17 @@ CSV Dataset → Kafka → Consumer → Parquet Data Lake → SQL (DuckDB) → St
 ---
 ## 📁 Project Structure
 
+```
 ecommerce-data-pipeline/
 │
-├── data/ # Raw dataset
-├── data_lake/ # Parquet files
-├── producer.py # Kafka producer
-├── consumer.py # Stream processing logic
-├── dashboard.py # Streamlit dashboard
-├── query.py # SQL queries (DuckDB)
+├── data/           # Raw dataset
+├── data_lake/      # Parquet files
+├── producer.py     # Kafka producer
+├── consumer.py     # Stream processing logic
+├── dashboard.py    # Streamlit dashboard
+├── query.py        # SQL queries (DuckDB)
 ├── README.md
-
+```
 ---
 
 ## ▶️ How to Run
