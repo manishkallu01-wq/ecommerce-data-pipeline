@@ -1,6 +1,6 @@
 ## 🚀 Real-Time E-commerce Data Pipeline
 
-- An end-to-end data engineering project that streams transaction data using Kafka, processes it in real time, stores it in a Parquet-based data lake, and visualizes insights through an interactive dashboard.
+- An end-to-end data engineering project that streams transaction data using Kafka, processes it in real time, stores it in a Parquet-based data lake for efficient analytics, and visualizes insights through an interactive dashboard.
 - Designed to simulate real-world streaming pipelines used in modern data platforms.
   
 ---
@@ -16,6 +16,12 @@ Dataset used: Online Retail Dataset
 Download from: https://archive.ics.uci.edu/ml/datasets/online+retail
 
 ----
+### Install Dependencies
+
+```
+pip install -r requirements.txt
+```
+---
 
 ## ⚙️ Tech Stack
 
@@ -55,25 +61,34 @@ ecommerce-data-pipeline/
 
 ## ▶️ How to Run
 
-### 1. Start Kafka
+### 1. Start Kafka (Docker)
 
+Ensure Docker is running and Kafka is configured.
+
+```
 docker-compose up -d
+```
 
 ### 2. Run Consumer
 
+```
 python consumer.py
+```
 
 ### 3. Run Producer
 
+```
 python producer.py
+```
 
 ### 4. Launch Dashboard
 
+```
 streamlit run dashboard.py
-
+```
 ---
 
-## 📸 Output
+## 📊 Dashboard Output
 
 * Live business metrics
 * Revenue trends
@@ -93,7 +108,9 @@ streamlit run dashboard.py
 
 ### Dashboard
 <img width="1396" height="666" alt="Screenshot 2026-05-03 at 1 45 05 PM" src="https://github.com/user-attachments/assets/b55ca0dc-a4ed-4d27-b81b-673c14e85499" />
+
 <img width="1363" height="424" alt="Screenshot 2026-05-03 at 1 45 15 PM" src="https://github.com/user-attachments/assets/28334f61-d9d8-4c52-ae41-6fc474fbd2da" />
+
 <img width="1407" height="408" alt="Screenshot 2026-05-03 at 1 45 22 PM" src="https://github.com/user-attachments/assets/acb67cd3-564c-4f86-80c4-0e905b84582a" />
 
 ### Pipeline Running
