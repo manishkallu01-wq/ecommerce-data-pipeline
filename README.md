@@ -1,7 +1,5 @@
 ## 🚀 Real-Time E-commerce Data Pipeline
 
-## 📌 Overview
-
 - An end-to-end data engineering project that streams transaction data using Kafka, processes it in real time, stores it in a Parquet-based data lake, and visualizes insights through an interactive dashboard.
 - Designed to simulate real-world streaming pipelines used in modern data platforms.
 
@@ -37,12 +35,12 @@ CSV Dataset → Kafka → Consumer → Parquet Data Lake → SQL (DuckDB) → St
 
 ecommerce-data-pipeline/
 │
-├── data/                  # Raw dataset
-├── data_lake/             # Parquet files
-├── producer.py            # Kafka producer
-├── consumer.py            # Stream processing logic
-├── dashboard.py           # Streamlit dashboard
-├── query.py               # SQL queries (DuckDB)
+├── data/ # Raw dataset
+├── data_lake/ # Parquet files
+├── producer.py # Kafka producer
+├── consumer.py # Stream processing logic
+├── dashboard.py # Streamlit dashboard
+├── query.py # SQL queries (DuckDB)
 ├── README.md
 
 ---
@@ -52,6 +50,7 @@ ecommerce-data-pipeline/
 ### 1. Start Kafka
 
 cd kafka-project
+
 docker-compose up -d
 
 ### 2. Run Consumer
