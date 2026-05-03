@@ -12,12 +12,22 @@
 CSV (batch source) → Kafka (ingestion) → Consumer (processing) → Parquet Data Lake (storage) → DuckDB (analytics) → Streamlit (visualization)
 
 ---
+## 🔄 Data Flow
+
+1. Producer streams transaction records from CSV to Kafka  
+2. Consumer processes messages in real time  
+3. Aggregated results are written to Parquet files (data lake)  
+4. DuckDB enables fast analytical queries  
+5. Streamlit dashboard visualizes live metrics
+
+---
+
 ## 📥 Dataset
 
 Dataset used: Online Retail Dataset  
 Download from: https://archive.ics.uci.edu/ml/datasets/online+retail
 
-----
+---
 ### 📦 Install Dependencies
 
 ```
