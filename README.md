@@ -16,7 +16,7 @@ Dataset used: Online Retail Dataset
 Download from: https://archive.ics.uci.edu/ml/datasets/online+retail
 
 ----
-### Install Dependencies
+### 📦 Install Dependencies
 
 ```
 pip install -r requirements.txt
