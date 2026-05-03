@@ -1,0 +1,14 @@
+# Data files
+data_lake/
+*.parquet
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Mac files
+.DS_Store
+
+# Virtual env
+venv/
+
