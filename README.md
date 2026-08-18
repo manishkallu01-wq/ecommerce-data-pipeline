@@ -1,122 +1,139 @@
-## 🚀 Real-Time E-commerce Data Pipeline
+# Real-Time E-Commerce Data Engineering Pipeline
 
-> Built to replicate real-time analytics pipelines used in production data systems.
+> End-to-end streaming data platform demonstrating event ingestion, validation, real-time processing, data-lake storage, analytical SQL, and business-facing data visualization.
 
-- An end-to-end data engineering project that streams transaction data using Kafka, processes it in real time, stores it in a Parquet-based data lake for efficient analytics, and visualizes insights through an interactive dashboard.
-- Designed to simulate real-world streaming pipelines used in modern data platforms.
-  
----
+## Overview
 
-## 🧱 Architecture
+This project simulates a production-style e-commerce data platform. Transaction records move from a batch source through **Apache Kafka**, are processed by a Python streaming consumer, persisted as **Parquet** data-lake outputs, queried with **DuckDB**, and surfaced through an interactive **Streamlit** dashboard.
 
-CSV (batch source) → Kafka (ingestion) → Consumer (processing) → Parquet Data Lake (storage) → DuckDB (analytics) → Streamlit (visualization)
+The project is intentionally designed around core Data Engineering responsibilities rather than only dashboard development: **ingestion → processing → storage → analytics → serving**.
 
----
-## 🔄 Data Flow
+## Architecture
 
-1. Producer streams transaction records from CSV to Kafka  
-2. Consumer processes messages in real time  
-3. Aggregated results are written to Parquet files (data lake)  
-4. DuckDB enables fast analytical queries  
-5. Streamlit dashboard visualizes live metrics
-
----
-
-## 📥 Dataset
-
-Dataset used: Online Retail Dataset  
-Download from: https://archive.ics.uci.edu/ml/datasets/online+retail
-
----
-### 📦 Install Dependencies
-
+```text
+Online Retail CSV
+       │
+       ▼
+Kafka Producer ───────► Kafka Topic
+                           │
+                           ▼
+                  Streaming Consumer
+                  ├─ validation
+                  ├─ cleaning
+                  └─ aggregation
+                           │
+                           ▼
+                   Parquet Data Lake
+                           │
+                    ┌──────┴──────┐
+                    ▼             ▼
+                 DuckDB       Streamlit
+               SQL analytics   dashboard
 ```
+
+## Data Flow
+
+1. Read transaction records from the Online Retail source dataset.
+2. Validate and normalize records before publishing them as Kafka events.
+3. Stream events through the Kafka topic to the processing consumer.
+4. Calculate transaction-level revenue and running business aggregates.
+5. Persist processed results as columnar Parquet files.
+6. Query the data lake with DuckDB for analytical workloads.
+7. Serve operational KPIs and trends through Streamlit.
+
+## Technology Stack
+
+| Layer | Technology |
+|---|---|
+| Language | Python |
+| Event Streaming | Apache Kafka |
+| Processing | Python / Pandas |
+| Data Lake | Parquet / PyArrow |
+| Analytical SQL | DuckDB |
+| Visualization | Streamlit |
+| Infrastructure | Docker Compose |
+| Source Data | UCI Online Retail Dataset |
+
+## Engineering Capabilities Demonstrated
+
+- Event-driven ingestion with Kafka
+- Streaming-style transaction processing
+- Data validation and cleaning
+- Revenue and business KPI aggregation
+- Columnar data-lake storage with Parquet
+- SQL analytics directly over data-lake files
+- Interactive analytical serving with Streamlit
+- Containerized local infrastructure
+- Separation of ingestion, processing, storage, and presentation concerns
+
+## Business Metrics
+
+The pipeline calculates:
+
+- Total revenue
+- Top-selling products
+- Top-performing countries
+- High-value customers
+- Revenue trends
+- Transaction/event processing counts
+
+## Project Structure
+
+```text
+ecommerce-data-pipeline/
+├── data/             # Raw source data (local)
+├── data_lake/        # Generated Parquet outputs
+├── producer.py       # Kafka event producer
+├── consumer.py       # Streaming processing and aggregation
+├── dashboard.py      # Streamlit serving layer
+├── query.py          # DuckDB analytical SQL
+├── requirements.txt  # Python dependencies
+└── README.md
+```
+
+## Dataset
+
+The project uses the **UCI Online Retail Dataset**.
+
+Source: UCI Machine Learning Repository — Online Retail.
+
+Place the downloaded source file in the location expected by `producer.py`. Raw and generated data directories are intended for local execution and should not be committed when they contain large datasets.
+
+## Local Setup
+
+### 1. Create the Python environment
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
----
 
-## ⚙️ Tech Stack
+### 2. Start Kafka infrastructure
 
-* Kafka (streaming)
-* Python
-* DuckDB (SQL analytics)
-* Parquet (data lake)
-* Streamlit (dashboard)
-
----
-
-## 📊 Features
-
-* Real-time revenue calculation
-* Top product tracking
-* Country-wise performance analysis
-* High-value customer identification
-* Persistent storage using Parquet
-* Interactive dashboard visualization
-
----
-## 📁 Project Structure
-
-```
-ecommerce-data-pipeline/
-│
-├── data/             # Raw dataset
-├── data_lake/        # Parquet files
-├── producer.py       # Kafka producer
-├── consumer.py       # Stream processing logic
-├── dashboard.py      # Streamlit dashboard
-├── query.py          # SQL queries (DuckDB)
-├── requirements.txt  # Project dependencies
-├── README.md
-```
----
-
-## ▶️ How to Run
-
-### 1. Start Kafka (Docker)
-
-Ensure Docker is running and Kafka is configured.
-
-```
-docker-compose up -d
+```bash
+docker compose up -d
 ```
 
-### 2. Run Consumer
+### 3. Start the consumer
 
-```
+```bash
 python consumer.py
 ```
 
-### 3. Run Producer
+### 4. Start the producer
 
-```
+```bash
 python producer.py
 ```
 
-### 4. Launch Dashboard
+### 5. Launch the dashboard
 
-```
+```bash
 streamlit run dashboard.py
 ```
----
 
-## 📊 Dashboard Output
-
-* Live business metrics
-* Revenue trends
-* Top products visualization
-* Country performance
-
----
-## 📊 Metrics Computed
-
-- Total Revenue (real-time)
-- Top Selling Products
-- Top Performing Country
-- High-Value Customers
----
-
-## 📸 Screenshots
+## Screenshots
 
 ### Dashboard
 
@@ -128,26 +145,19 @@ streamlit run dashboard.py
 
 ![Pipeline](https://github.com/user-attachments/assets/c328e6f9-f8a9-4f5d-a907-53d0e3f37d94)
 
----
+## Data Engineering Design Notes
 
-## 💡 Key Learnings
+This is a local portfolio implementation, not a production deployment. A production-grade version could add schema management with Avro/Protobuf, Kafka consumer groups and durable offsets, checkpointed state, orchestration with Airflow, automated data-quality tests, cloud object storage, observability, CI/CD, and warehouse modeling.
 
-* Built real-time streaming pipeline
-* Implemented data cleaning and aggregation
-* Designed data lake storage using Parquet
-* Enabled SQL analytics using DuckDB
-* Created interactive dashboard
+## Resume-Ready Description
 
----
+**Built an end-to-end real-time e-commerce data pipeline using Kafka, Python, Parquet, DuckDB, and Streamlit, implementing event ingestion, validation, streaming aggregation, columnar data-lake storage, and SQL-based operational analytics.**
 
-## 🎯 Use Case
+## Future Enhancements
 
-This pipeline simulates how companies like Amazon or Flipkart process transaction data to generate real-time insights.
-
----
-
-## 🚀 Future Improvements
-
-* Add batch + streaming hybrid architecture
-* Deploy on cloud (AWS / GCP)
-* Integrate Airflow for orchestration
+- Add Airflow orchestration and scheduled data-quality checks
+- Add cloud object storage such as Amazon S3
+- Introduce schema validation and versioning
+- Add automated tests and CI/CD
+- Add warehouse/star-schema modeling for BI workloads
+- Add monitoring and data observability
