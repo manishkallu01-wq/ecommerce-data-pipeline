@@ -225,3 +225,28 @@ This project gives a strong interview narrative around:
 ## 📌 Resume-Ready Project Description
 
 **Built an end-to-end real-time e-commerce data pipeline using Kafka and Python, implementing event ingestion, validation, streaming aggregation, Parquet data-lake storage, DuckDB analytical SQL, and Streamlit-based operational reporting.**
+
+## Reproducibility contract
+
+The local workflow is complete when Kafka accepts generated order events, the consumer validates and persists them, the query layer returns the stored records, and the dashboard can read the same sink.
+
+| Boundary | Contract |
+|---|---|
+| Event key | Stable order identifier |
+| Event payload | Valid JSON with required commerce fields |
+| Delivery | At-least-once; consumers must tolerate duplicate events |
+| Storage | Cassandra table keyed for the documented query pattern |
+| Observability | Producer/consumer failures must be visible in logs |
+| Validation | Static checks and unit tests pass before services start |
+
+Use `python scripts/validate_project.py` for a dependency-free repository smoke test. It checks required files, Python syntax, and documentation/run-contract completeness. Infrastructure services still require Kafka and Cassandra; the README does not claim an embedded production deployment.
+
+## Production methodology
+
+1. Capture immutable order events at the source boundary.
+2. Validate schema and attach event metadata before publishing.
+3. Partition by a stable business key to preserve per-order ordering.
+4. Consume idempotently and store with query-driven keys.
+5. Separate operational ingestion from analytical presentation.
+6. Monitor lag, throughput, dead letters, duplicate rate, and sink latency.
+7. Protect schema evolution with compatibility checks and CI.
