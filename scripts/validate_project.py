@@ -8,7 +8,7 @@ for path in list(ROOT.glob("*.py"))+list((ROOT/"tests").glob("*.py")):
     try: ast.parse(path.read_text(encoding="utf-8"),filename=str(path))
     except SyntaxError as exc: errors.append(f"{path.relative_to(ROOT)}: {exc}")
 readme=(ROOT/"README.md").read_text(encoding="utf-8").lower()
-for term in ["why it exists","data flow","kafka","parquet","tests","results","limitations"]:
+for term in ["why it exists","data flow","kafka","parquet","tests","results","scope"]:
     if term not in readme: errors.append(f"README missing concept: {term}")
 if errors: print("\n".join(f"ERROR {e}" for e in errors)); sys.exit(1)
 print("PASS ecommerce structure, Python syntax, and documentation contract")
