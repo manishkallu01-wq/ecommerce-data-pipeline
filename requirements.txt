@@ -1,5 +1,6 @@
-kafka-python
-pandas
-duckdb
-streamlit
-pyarrow
+duckdb==1.4.1
+kafka-python==2.2.15
+pandas==2.3.3
+pyarrow==21.0.0
+pytest==8.4.2
+streamlit==1.49.1
