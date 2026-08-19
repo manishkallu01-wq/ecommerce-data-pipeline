@@ -1,0 +1,13 @@
+InvoiceNo,Description,Quantity,UnitPrice,CustomerID,Country
+10001,Notebook,2,4.50,C001,United States
+10002,Desk Lamp,1,24.00,C002,United States
+10003,Water Bottle,3,12.00,C003,Canada
+10004,USB Cable,4,7.50,C001,United States
+10005,Headphones,1,49.00,C004,United Kingdom
+10006,Mouse Pad,2,9.00,C005,Germany
+10007,Keyboard,1,65.00,C006,Canada
+10008,Webcam,1,55.00,C002,United States
+10009,Phone Stand,3,11.00,C007,Australia
+10010,Charger,2,19.00,C003,Canada
+10011,Monitor Arm,1,89.00,C008,Germany
+10012,Laptop Sleeve,2,28.00,C009,United Kingdom
