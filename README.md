@@ -82,15 +82,15 @@ The dashboard shows cumulative revenue, processed-event count, top country, and 
 
 ### Streamlit dashboard
 
-<img width="1396" height="666" alt="E-commerce pipeline dashboard overview" src="https://github.com/user-attachments/assets/b55ca0dc-a4ed-4d27-b81b-673c14e85499" />
+<img width="1396" height="666" alt="E-commerce pipeline dashboard overview" src="assets/dashboard-overview.png" />
 
-<img width="1363" height="424" alt="E-commerce pipeline product and country analysis" src="https://github.com/user-attachments/assets/28334f61-d9d8-4c52-ae41-6fc474fbd2da" />
+<img width="1363" height="424" alt="E-commerce pipeline product and country analysis" src="assets/dashboard-analysis.png" />
 
-<img width="1407" height="408" alt="E-commerce pipeline dashboard detail" src="https://github.com/user-attachments/assets/acb67cd3-564c-4f86-80c4-0e905b84582a" />
+<img width="1407" height="408" alt="E-commerce pipeline dashboard detail" src="assets/dashboard-details.png" />
 
 ### Kafka pipeline running
 
-<img width="579" height="956" alt="Kafka producer and consumer processing order events" src="https://github.com/user-attachments/assets/c328e6f9-f8a9-4f5d-a907-53d0e3f37d94" />
+<img width="579" height="956" alt="Kafka producer and consumer processing order events" src="assets/pipeline-running.png" />
 
 ## Delivery and recovery semantics
 
