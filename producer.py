@@ -1,29 +1,31 @@
-
+"""Publish validated order events to Kafka."""
+from __future__ import annotations
+import json, os, time
+from pathlib import Path
 import pandas as pd
 from kafka import KafkaProducer
-import json
-import time
 
-# Load clean dataset
-df = pd.read_csv("Online Retail1.csv", encoding="utf-8-sig")
+REQUIRED_COLUMNS={"InvoiceNo","Description","Quantity","UnitPrice","CustomerID","Country"}
 
-# Data Cleaning
-df = df.dropna(subset=["Description", "CustomerID"])
-df = df[df["Quantity"] > 0]
-df = df[df["UnitPrice"] > 0]
+def load_orders(path: str | Path) -> pd.DataFrame:
+    frame=pd.read_csv(path,encoding="utf-8-sig")
+    missing=REQUIRED_COLUMNS-set(frame.columns)
+    if missing: raise ValueError(f"Missing columns: {sorted(missing)}")
+    frame=frame.dropna(subset=["Description","CustomerID"]).copy()
+    return frame[(frame["Quantity"]>0)&(frame["UnitPrice"]>0)]
 
-producer = KafkaProducer(
-    bootstrap_servers='localhost:9092',
-    value_serializer=lambda v: json.dumps(v).encode('utf-8')
-)
+def to_event(row: pd.Series) -> dict:
+    event=row.to_dict()
+    event["InvoiceNo"]=str(event["InvoiceNo"]); event["CustomerID"]=str(event["CustomerID"])
+    event["Quantity"]=float(event["Quantity"]); event["UnitPrice"]=float(event["UnitPrice"])
+    return event
 
-print("Streaming e-commerce data...\n")
+def main() -> None:
+    source=Path(os.getenv("ORDER_SOURCE","data/sample_orders.csv"))
+    producer=KafkaProducer(bootstrap_servers=os.getenv("KAFKA_BOOTSTRAP_SERVERS","localhost:9092"),key_serializer=lambda v:v.encode(),value_serializer=lambda v:json.dumps(v).encode())
+    for _,row in load_orders(source).iterrows():
+        event=to_event(row); producer.send(os.getenv("ORDER_TOPIC","orders"),key=event["InvoiceNo"],value=event)
+        time.sleep(float(os.getenv("EVENT_INTERVAL_SECONDS","0.02")))
+    producer.flush(); print("Order events published")
 
-for _, row in df.iterrows():
-    data = row.to_dict()
-
-    producer.send("orders", value=data)
-
-    print("Sent:", data["InvoiceNo"])
-
-    time.sleep(0.02)
+if __name__=="__main__": main()
