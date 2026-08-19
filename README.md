@@ -1,12 +1,12 @@
 # Real-Time E-Commerce Data Engineering Pipeline
 
-> End-to-end streaming data platform demonstrating **event ingestion → validation → processing → data-lake storage → analytical SQL → business-facing serving** with Apache Kafka, Python, Parquet, DuckDB, and Streamlit.
+> End-to-end streaming data platform covering **event ingestion → validation → processing → data-lake storage → analytical SQL → business-facing serving** with Apache Kafka, Python, Parquet, DuckDB, and Streamlit.
 
 ## Executive Summary
 
 This project simulates a production-style transaction data platform. Records from the UCI Online Retail dataset are published as Kafka events, processed by a Python streaming consumer, written as columnar Parquet data-lake outputs, queried with DuckDB, and surfaced through an interactive Streamlit dashboard.
 
-The portfolio focus is the **data platform**, not the dashboard alone: ingestion reliability, transformation boundaries, storage format, analytical access, and serving are treated as separate engineering concerns.
+The engineering focus is the **data platform**, not the dashboard alone: ingestion reliability, transformation boundaries, storage format, analytical access, and serving are treated as separate engineering concerns.
 
 ## What The implementation covers
 
@@ -173,13 +173,13 @@ Parquet provides columnar storage that is well suited to analytical workloads an
 
 ### DuckDB for local analytical SQL
 
-DuckDB provides an efficient analytical SQL layer over local Parquet outputs without requiring a separate warehouse for the portfolio implementation.
+DuckDB provides an efficient analytical SQL layer over local Parquet outputs without requiring a separate warehouse for the local implementation.
 
 ### Streamlit as the serving layer
 
-The dashboard demonstrates how processed data can be exposed to business users after the ingestion and analytical layers have completed their work.
+The dashboard shows how processed data can be exposed to business users after the ingestion and analytical layers have completed their work.
 
-This is a **local portfolio implementation**, not a production deployment. Large raw datasets and generated data-lake files should remain local rather than being committed to Git.
+This is a **local local implementation**, not a production deployment. Large raw datasets and generated data-lake files should remain local rather than being committed to Git.
 
 A production-grade evolution could add:
 
@@ -193,9 +193,7 @@ A production-grade evolution could add:
 - Warehouse/star-schema modeling
 - CI/CD and observability
 
-## Data Engineer Interview Talking Points
-
-This project gives a strong interview narrative around:
+This project gives a strong technical discussion around:
 
 1. **Ingestion:** why Kafka is useful between producers and consumers.
 2. **Data quality:** where validation should occur and how bad events should be isolated.
@@ -213,7 +211,7 @@ This project gives a strong interview narrative around:
 - Introduce a warehouse/star schema for BI workloads.
 - Add pipeline latency, throughput, freshness, and failure metrics.
 
-**Manish Kallu** — Data Engineering portfolio focused on streaming pipelines, distributed processing, SQL analytics, and production-oriented data platforms.
+**Manish Kallu** — Data engineering work focused on streaming pipelines, distributed processing, SQL analytics, and production-style data platforms.
 
 - GitHub: [manishkallu01-wq](https://github.com/manishkallu01-wq)
 - Email: manishkallu01@gmail.com
